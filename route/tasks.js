@@ -36,4 +36,14 @@ router.delete('/:id', async (req,res) => {
         res.status(400).json({error : "Invalid ID"});
     }
 });
+router.put('/:id', async (req,res) =>{
+    try{
+        const task= await Task.findByIdAndUpdate(req.params.id,req.body,{new : true, runValidators : true});
+        if(!task) res.status(404).json({error: 'Task not found'});
+        res.status(201).json(task);
+    }
+    catch(err){
+        res.status(400).json({err : err.message});
+    }
+});
 module.exports = router;

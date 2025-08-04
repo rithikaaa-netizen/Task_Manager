@@ -4,6 +4,9 @@ const TaskSchema = new mongoose.Schema({
         type: String,
         required:[true, 'Title is required']
     },
+    due_date: {
+        type: Date
+    },
     description: {
         type: String
     },
